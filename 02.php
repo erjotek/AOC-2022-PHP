@@ -7,59 +7,36 @@ function input($input)
 
 function part1($input)
 {
-    $pks['X'] = 1;
-    $pks['Y'] = 2;
-    $pks['Z'] = 3;
+    $win['A X'] = 3 + 1;
+    $win['A Y'] = 6 + 2;
+    $win['A Z'] = 0 + 3;
 
-    $win['AX'] = 3;
-    $win['AY'] = 6;
-    $win['AZ'] = 0;
+    $win['B X'] = 0 + 1;
+    $win['B Y'] = 3 + 2;
+    $win['B Z'] = 6 + 3;
 
-    $win['BX'] = 0;
-    $win['BY'] = 3;
-    $win['BZ'] = 6;
+    $win['C X'] = 6 + 1;
+    $win['C Y'] = 0 + 2;
+    $win['C Z'] = 3 + 3;
 
-    $win['CX'] = 6;
-    $win['CY'] = 0;
-    $win['CZ'] = 3;
-
-    $sum = 0;
-    foreach ($input as $r) {
-        $sum += $pks[$r[2]];
-        $sum += $win[$r[0].$r[2]];
-    }
-
-    return $sum; //12276
+    return array_reduce($input, fn($c, $w) => $c + $win[$w]); //12276
 }
 
 function part2($input)
 {
-    $sco['X'] = 0;
-    $sco['Y'] = 3;
-    $sco['Z'] = 6;
+    $win['A X'] = 3 + 0;
+    $win['A Y'] = 1 + 3;
+    $win['A Z'] = 2 + 6;
 
-    $pks['X'] = 1;
-    $pks['Y'] = 2;
-    $pks['Z'] = 3;
+    $win['B X'] = 1 + 0;
+    $win['B Y'] = 2 + 3;
+    $win['B Z'] = 3 + 6;
 
-    $win['AX'] = 'Z';
-    $win['AY'] = 'X';
-    $win['AZ'] = 'Y';
+    $win['C X'] = 2 + 0;
+    $win['C Y'] = 3 + 3;
+    $win['C Z'] = 1 + 6;
 
-    $win['BX'] = 'X';
-    $win['BY'] = 'Y';
-    $win['BZ'] = 'Z';
-
-    $win['CX'] = 'Y';
-    $win['CY'] = 'Z';
-    $win['CZ'] = 'X';
-
-    $sum = 0;
-    foreach ($input as $r) {
-        $sum += $sco[$r[2]];
-        $sum += $pks[$win[$r[0].$r[2]]];
-    }
-    return $sum; // 9975
+    return array_reduce($input, fn($c, $w) => $c + $win[$w]); // 9975
 }
 
 include __DIR__ . '/template.php';
