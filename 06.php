@@ -2,17 +2,19 @@
 
 function input($input)
 {
-    return str_split($input);
+    return $input;
 }
 
 function uniq($input, $uniq) {
-    $c = count($input);
+    $c = strlen($input);
 
     for ($i = 0; $i < $c - $uniq; $i++) {
-        if (count(array_unique(array_slice($input, $i, $uniq))) === $uniq) {
+        if (strlen(count_chars(substr($input, $i, $uniq), 3)) === $uniq) {
             return $i + $uniq;
         }
     }
+
+    return -1;
 }
 
 function part1($input)
