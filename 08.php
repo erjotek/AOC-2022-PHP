@@ -3,19 +3,18 @@
 function input($input)
 {
     $input = explode("\n", $input);
-    $input = array_map('str_split', $input);
 
     return $input;
 }
 
-function visible($pos, $dir, &$input)
+function visible($pos, $dir, $input)
 {
     $val = $input[$pos[0]][$pos[1]];
     while (true) {
         $pos[0] += $dir[0];
         $pos[1] += $dir[1];
 
-        if (!isset($input[$pos[0]][$pos[1]])) {
+        if ($pos[0] < 0 || $pos[1] < 0 || !isset($input[$pos[0]][$pos[1]])) {
             return true;
         }
 
@@ -33,7 +32,7 @@ function countTrees($pos, $dir, &$input)
         $pos[0] += $dir[0];
         $pos[1] += $dir[1];
 
-        if (!isset($input[$pos[0]][$pos[1]])) {
+        if ($pos[0] < 0 || $pos[1] < 0 || !isset($input[$pos[0]][$pos[1]])) {
             return $see;
         }
 
@@ -48,7 +47,7 @@ function countTrees($pos, $dir, &$input)
 function part1($input)
 {
     $rows = count($input);
-    $cols = count($input[0]);
+    $cols = strlen($input[0]);
 
     $vis = 0;
 
@@ -69,17 +68,17 @@ function part1($input)
 function part2($input)
 {
     $rows = count($input);
-    $cols = count($input[0]);
+    $cols = strlen($input[0]);
 
     $cts = 0;
 
     for ($row = 1; $row < $rows - 1; $row++) {
         for ($col = 1; $col < $cols - 1; $col++) {
-            $ct = [];
+            $ct = 1;
             foreach ([[0, 1], [0, -1], [-1, 0], [1, 0]] as $dir) {
-                $ct[] = countTrees([$row, $col], $dir, $input);
+                $ct *= countTrees([$row, $col], $dir, $input);
             }
-            $cts = max($cts, array_product($ct));
+            $cts = max($cts, $ct);
         }
     }
 
