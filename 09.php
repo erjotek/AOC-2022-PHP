@@ -16,21 +16,25 @@ function tailPos($H, $T)
     $d[1] = $H[1] - $T[1];
 
     if (abs($d[0]) === 2 && abs($d[1]) === 2) {
-        $T[0] = ($H[0] + $T[0]) / 2;
-        $T[1] = ($H[1] + $T[1]) / 2;
+//        $T[0] = ($H[0] + $T[0]) / 2;
+        $T[0] += ($H[0] <=> $T[0]);
+//        $T[1] = ($H[1] + $T[1]) / 2;
+        $T[1] += ($H[1] <=> $T[1]);
 
         return $T;
     }
 
     if (abs($d[1]) === 2) {
         $T[0] += $d[0];
-        $T[1] = ($H[1] + $T[1]) / 2;
+//        $T[1] = ($H[1] + $T[1]) / 2;
+        $T[1] += ($H[1] <=> $T[1]);
 
         return $T;
     }
 
     if (abs($d[0]) === 2) {
-        $T[0] = ($H[0] + $T[0]) / 2;
+//        $T[0] = ($H[0] + $T[0]) / 2;
+        $T[0] += ($H[0] <=> $T[0]);
         $T[1] += $d[1];
 
         return $T;
@@ -39,7 +43,8 @@ function tailPos($H, $T)
     return $T;
 }
 
-function walk($H, $T, $input) {
+function walk($H, $T, $input)
+{
     $vis = [];
 
     $dirs = ['R' => [0, 1], 'L' => [0, -1], 'U' => [-1, 0], 'D' => [1, 0]];
@@ -82,8 +87,6 @@ function part2($input)
 }
 
 include __DIR__ . '/template.php';
-
-
 
 
 function display($H, $T, $vis)
