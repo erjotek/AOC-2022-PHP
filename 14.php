@@ -20,7 +20,7 @@ function input($input)
         }
     }
 
-    return $cave; //979
+    return $cave;
 }
 
 function display($cave)
@@ -29,8 +29,6 @@ function display($cave)
     $ml = min(array_map('min', array_map('array_keys', $cave))) - 1;
     $mr = max(array_map('max', array_map('array_keys', $cave))) + 1;
 
-    echo chr(27) . chr(91) . 'H' . chr(27) . chr(91) . 'J';
-//    echo "\033[2J";
     for ($row = 0; $row <= $bottom; $row++) {
         for ($col = $ml; $col <= $mr; $col++) {
             echo $cave[$row][$col] ?? '.';
@@ -84,6 +82,7 @@ function sands($cave, $part2 = false)
         }
     }
 
+//    display($cave);
     return $sands - 1;
 }
 
