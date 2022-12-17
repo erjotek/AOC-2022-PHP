@@ -39,7 +39,7 @@ function part2($input)
     for ($c = 0; $c < 240; $c++) {
         $rc = $c % 40;
 
-        echo in_array($rc, [$cycles[$c] - 1, $cycles[$c], $cycles[$c] + 1], true) ? '#' : ' ';
+        echo in_array($rc, [$cycles[$c] - 1, $cycles[$c], $cycles[$c] + 1], true) ? "\u{2588}" : "\u{2591}";
 
         if ($rc === 39) {
             echo "\n";
