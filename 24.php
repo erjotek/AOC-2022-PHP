@@ -137,7 +137,7 @@ function moves($sminute, $spos, $end)
                 continue;
             }
 
-            if ($minute + abs($pos[0] - $end[0]) + abs($pos[1] - $end[1]) > $min) {
+            if ($minute + abs($npos[0] - $end[0]) + abs($npos[1] - $end[1]) > $min) {
                 continue;
             }
 
